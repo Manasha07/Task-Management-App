@@ -1,0 +1,47 @@
+<div class="form-wrapper">
+    <mat-card class="card-style">
+      <h2 class="text-center">Create New Project</h2>
+  
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        
+        <!-- Project Name with max length -->
+        <mat-form-field appearance="fill" class="w-100">
+          <mat-label>Project Name</mat-label>
+          <input matInput formControlName="name" maxlength="50" />
+          <mat-hint align="end">{{ form.get('name')?.value?.length || 0 }}/50</mat-hint>
+          <mat-error *ngIf="form.get('name')?.hasError('maxlength')">
+            Maximum 50 characters allowed
+          </mat-error>
+        </mat-form-field>
+  
+        <!-- Description with max length -->
+        <mat-form-field appearance="fill" class="w-100">
+          <mat-label>Description</mat-label>
+          <textarea matInput formControlName="description" maxlength="200"></textarea>
+          <mat-hint align="end">{{ form.get('description')?.value?.length || 0 }}/200</mat-hint>
+          <mat-error *ngIf="form.get('description')?.hasError('maxlength')">
+            Maximum 200 characters allowed
+          </mat-error>
+        </mat-form-field>
+  
+        <!-- Due Date -->
+        <mat-form-field appearance="fill" class="w-100">
+          <mat-label>Due Date</mat-label>
+          <input
+            matInput
+            [min]="today"
+            [matDatepicker]="picker"
+            formControlName="dueDate"
+          />
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+  
+        <!-- Submit Button -->
+        <button mat-raised-button color="primary" class="w-100 mt-3" type="submit">
+          Create Project
+        </button>
+      </form>
+    </mat-card>
+  </div>
+  
