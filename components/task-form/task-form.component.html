@@ -1,0 +1,12 @@
+<form (ngSubmit)="submitForm()" #taskForm="ngForm">
+    <div>
+      <label>Title:</label>
+      <input type="text" [(ngModel)]="model.title" name="title" required />
+    </div>
+    <div>
+      <label>Description:</label>
+      <input type="text" [(ngModel)]="model.description" name="description" required />
+    </div>
+    <button type="submit">Save Task</button>
+  </form>
+  
