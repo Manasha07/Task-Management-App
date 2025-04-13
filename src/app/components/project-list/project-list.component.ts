@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ProjectService } from '../services/project.service';
+import { ProjectService } from '../../services/project.service';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
