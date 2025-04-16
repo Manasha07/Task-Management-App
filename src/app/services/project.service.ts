@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProjectService {
-  private baseUrl = 'http://localhost:3000/projects';
+  private baseUrl = 'http://localhost:3000/project';
   constructor(private http:HttpClient) { }
 
   getProjects(): Observable<any[]> {

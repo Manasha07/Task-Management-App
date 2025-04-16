@@ -8,12 +8,33 @@ import { TaskListComponent } from './components/task-list/task-list.component';
 import { TaskFormComponent } from './components/task-form/task-form.component';
 
 @NgModule({
+<<<<<<< HEAD
   imports: [
     BrowserModule,
     TaskListComponent,
     TaskFormComponent
+=======
+  declarations: [
+    // add other components like ProjectFormComponent, etc.
+  ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatButtonModule,
+    AppComponent,
+    TaskFiltersComponent,
+    TaskFormComponent,
+    ProjectFormComponent,
+    ProjectListComponent
+>>>>>>> 4c9660a (third commit)
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  // Removed bootstrap array as AppComponent is a standalone component
 })
 export class AppModule { }
