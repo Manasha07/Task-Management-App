@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { ProjectService } from '../../services/project.service';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -16,7 +15,6 @@ import { MatTableModule } from '@angular/material/table';
   imports: [
     CommonModule,
     RouterModule,
-    HttpClientModule,
     MatListModule,
     MatIconModule,
     MatButtonModule,
@@ -56,5 +54,4 @@ export class ProjectListComponent {
   viewTasks(projectId: number): void {
     this.router.navigate(['/tasks'], { queryParams: { projectId } });
   }
-
 }
