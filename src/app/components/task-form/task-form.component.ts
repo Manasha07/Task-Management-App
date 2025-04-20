@@ -1,35 +1,58 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Task } from '../../models/task.model';
-
 
 @Component({
   selector: 'app-task-form',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule], 
   template: `
-    <div>
-      <h2>{{ task?.id ? 'Edit Task' : 'New Task' }}</h2>
-      <form (ngSubmit)="submitForm()">
-        <input [(ngModel)]="taskData.title" name="title" placeholder="Title" required />
-        <textarea [(ngModel)]="taskData.description" name="description" placeholder="Description"></textarea>
-        <button type="submit">{{ task?.id ? 'Update' : 'Add' }}</button>
+    <div class="form-container">
+      <h2>New Task</h2>
+      <form (ngSubmit)="addTask()" #taskForm="ngForm">
+        <input type="text" placeholder="Title" [(ngModel)]="title" name="title" required />
+        <input type="text" placeholder="Description" [(ngModel)]="description" name="description" required />
+        <button type="submit">Add</button>
       </form>
     </div>
-  `
+  `,
+  styles: [`
+    .form-container {
+      margin-bottom: 20px;
+    }
+
+    input {
+      margin: 5px;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      padding: 8px 16px;
+      background-color: #2ecc71;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #27ae60;
+    }
+  `]
 })
 export class TaskFormComponent {
-  @Input() task: Task | null = null;
-  @Output() onSubmit = new EventEmitter<Task>();
+  @Output() taskCreated = new EventEmitter<{ title: string, description: string }>();
 
-  taskData: Task = { id: '', title: '', description: '' };
+  title: string = '';
+  description: string = '';
 
-  ngOnChanges() {
-    this.taskData = this.task ? { ...this.task } : { id: '', title: '', description: '' };
-  }
-
-  submitForm() {
-    this.onSubmit.emit(this.taskData);
+  addTask() {
+    if (this.title.trim() && this.description.trim()) {
+      this.taskCreated.emit({ title: this.title, description: this.description });
+      this.title = '';
+      this.description = '';
+    }
   }
 }
