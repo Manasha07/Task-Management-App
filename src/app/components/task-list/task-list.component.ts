@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Task } from '../../models/task.model';
-
+import { ActivatedRoute } from '@angular/router';
+import { TaskService } from '../../services/task.service';
 
 @Component({
   selector: 'app-task-list',
@@ -25,4 +26,16 @@ export class TaskListComponent {
   @Input() tasks: Task[] = [];
   @Output() onEdit = new EventEmitter<Task>();
   @Output() onDelete = new EventEmitter<string>();
+  constructor(private route: ActivatedRoute, private taskService: TaskService) {}
+
+ngOnInit(): void {
+  this.route.queryParams.subscribe(params => {
+    const projectId = params['projectId'];
+    if (projectId) {
+      this.taskService.getTasksByProjectId(projectId).subscribe(tasks => {
+        this.tasks = tasks;
+      });
+    }
+  });
+}
 }
