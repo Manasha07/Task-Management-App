@@ -27,7 +27,7 @@ import { MatTableModule } from '@angular/material/table';
 })
 export class ProjectListComponent {
   projects: any[] = [];
-  displayedColumns: string[] = ['name', 'description'];
+  displayedColumns: string[] = ['name', 'description','actions'];
 
   constructor(private projectService: ProjectService, private router: Router) {}
 
