@@ -11,6 +11,9 @@ export class TaskService {
   private baseUrl = 'http://localhost:3000/task';
 
   constructor(private http: HttpClient) {}
+ getTasksByProjectId(projectId: number): Observable<Task[]> {
+  return this.http.get<Task[]>(`http://localhost:3000/task?projectId=${projectId}`);
+}
 
   getTasks(): Observable<Task[]> {
     return this.http.get<Task[]>(this.baseUrl);
