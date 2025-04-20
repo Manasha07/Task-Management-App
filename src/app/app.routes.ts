@@ -4,5 +4,7 @@ import { ProjectFormComponent } from './components/project-form/project-form.com
 
 export const routes: Routes = [
   { path: '', component: ProjectListComponent },
-  { path: 'projects/add', component: ProjectFormComponent }, // this matches your button!
+  { path: 'projects/add', component: ProjectFormComponent },// this matches your button!
+  { path: 'projects/edit/:id', component: ProjectFormComponent },
+
 ];
