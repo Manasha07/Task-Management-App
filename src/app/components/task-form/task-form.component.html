@@ -1,12 +1,22 @@
-<form (ngSubmit)="submitForm()" #taskForm="ngForm">
-    <div>
-      <label>Title:</label>
-      <input type="text" [(ngModel)]="model.title" name="title" required />
-    </div>
-    <div>
-      <label>Description:</label>
-      <input type="text" [(ngModel)]="model.description" name="description" required />
-    </div>
-    <button type="submit">Save Task</button>
+<div class="task-form-container">
+  <h4 class="text-center">New Task</h4>
+  <form (ngSubmit)="onSubmit()" class="form-row justify-content-center">
+    <input type="text" [(ngModel)]="task.title" name="title" placeholder="Title" class="form-control input-sm" required>
+    <input type="text" [(ngModel)]="task.description" name="description" placeholder="Description" class="form-control input-sm" required>
+    <select [(ngModel)]="task.status" name="status" class="form-control input-sm" required>
+      <option value="" disabled selected>Status</option>
+      <option value="Pending">Pending</option>
+      <option value="In Progress">In Progress</option>
+      <option value="Done">Done</option>
+    </select>
+    <select [(ngModel)]="task.priority" name="priority" class="form-control input-sm" required>
+      <option value="" disabled selected>Priority</option>
+      <option value="Low">Low</option>
+      <option value="Medium">Medium</option>
+      <option value="High">High</option>
+    </select>
+    <input type="date" [(ngModel)]="task.dueDate" name="dueDate" class="form-control input-sm" required>
+    <input type="text" [(ngModel)]="task.project" name="project" placeholder="Project" class="form-control input-sm" required>
+    <button type="submit" class="btn btn-success">Add</button>
   </form>
-  
+</div>
