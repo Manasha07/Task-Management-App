@@ -1,41 +1,37 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Task } from '../../models/task.model';
-import { ActivatedRoute } from '@angular/router';
-import { TaskService } from '../../services/task.service';
+import { FormsModule } from '@angular/forms';  
 
 @Component({
   selector: 'app-task-list',
   standalone: true,
-  imports: [CommonModule],
-  template: `
-    <div *ngIf="tasks.length; else empty">
-      <div *ngFor="let task of tasks">
-        <h3>{{ task.title }}</h3>
-        <p>{{ task.description }}</p>
-        <button (click)="onEdit.emit(task)">Edit</button>
-        <button (click)="onDelete.emit(task.id)">Delete</button>
-      </div>
-    </div>
-    <ng-template #empty>
-      <p>No tasks available.</p>
-    </ng-template>
-  `
+  imports: [CommonModule, FormsModule], 
+  templateUrl: './task-list.component.html',
+  styleUrls: ['./task-list.component.css']
 })
 export class TaskListComponent {
-  @Input() tasks: Task[] = [];
-  @Output() onEdit = new EventEmitter<Task>();
-  @Output() onDelete = new EventEmitter<string>();
-  constructor(private route: ActivatedRoute, private taskService: TaskService) {}
+  @Input() tasks: any[] = [];
+  @Output() delete = new EventEmitter<number>();
+  @Output() update = new EventEmitter<{ index: number, task: any }>();
 
-ngOnInit(): void {
-  this.route.queryParams.subscribe(params => {
-    const projectId = params['projectId'];
-    if (projectId) {
-      this.taskService.getTasksByProjectId(projectId).subscribe(tasks => {
-        this.tasks = tasks;
-      });
-    }
-  });
-}
+  editingIndex: number | null = null;
+  editedTask = { title: '', description: '', status: '', priority: '', dueDate: '', associatedProject: '' };
+
+  startEdit(index: number) {
+    this.editingIndex = index;
+    this.editedTask = { ...this.tasks[index] };
+  }
+
+  saveEdit(index: number) {
+    this.update.emit({ index, task: this.editedTask });
+    this.editingIndex = null;
+  }
+
+  cancelEdit() {
+    this.editingIndex = null;
+  }
+
+  deleteTask(index: number) {
+    this.delete.emit(index);
+  }
 }
