@@ -6,5 +6,7 @@ export const routes: Routes = [
   { path: '', component: ProjectListComponent },
   { path: 'projects/add', component: ProjectFormComponent },// this matches your button!
   { path: 'projects/edit/:id', component: ProjectFormComponent },
+  { path: 'tasks', loadComponent: () => import('./components/task-list/task-list.component').then(m => m.TaskListComponent) },
+
 
 ];
