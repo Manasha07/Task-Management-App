@@ -37,9 +37,10 @@
               <button mat-icon-button color="warn" (click)="deleteProject(project.id)">
                 <mat-icon>delete</mat-icon>
               </button>
-              <button mat-icon-button color="accent" (click)="openTaskForm(project.name)">
+ <button mat-icon-button color="accent" (click)="openTaskForm(project.id)">
   <mat-icon>add_task</mat-icon>
 </button>
+
 
               <button mat-button (click)="viewTasks(project.id)">View Tasks</button>
             </div>
