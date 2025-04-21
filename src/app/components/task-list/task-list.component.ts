@@ -1,30 +1,58 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';  
+import { FormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { TaskService } from '../../services/task.service';
 
 @Component({
   selector: 'app-task-list',
   standalone: true,
-  imports: [CommonModule, FormsModule], 
+  imports: [CommonModule, FormsModule],
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.css']
 })
-export class TaskListComponent {
-  @Input() tasks: any[] = [];
-  @Output() delete = new EventEmitter<number>();
-  @Output() update = new EventEmitter<{ index: number, task: any }>();
-
+export class TaskListComponent implements OnInit {
+  tasks: any[] = [];
+  filteredTasks: any[] = [];
   editingIndex: number | null = null;
   editedTask = { title: '', description: '', status: '', priority: '', dueDate: '', associatedProject: '' };
 
+  constructor(private route: ActivatedRoute, private taskService: TaskService) {}
+
+  ngOnInit(): void {
+    this.taskService.getTasks().subscribe((data: any[]) => {
+      this.tasks = data;
+
+      this.route.queryParams.subscribe(params => {
+        const projectId = +params['projectId'];
+        if (projectId) {
+          this.filteredTasks = this.tasks.filter(task => task.projectId === projectId);
+        } else {
+          this.filteredTasks = this.tasks;
+        }
+      });
+    });
+  }
+
   startEdit(index: number) {
     this.editingIndex = index;
-    this.editedTask = { ...this.tasks[index] };
+    const task = { ...this.filteredTasks[index] };
+
+    // Format dueDate to YYYY-MM-DD for input[type="date"]
+    if (task.dueDate) {
+      const date = new Date(task.dueDate);
+      task.dueDate = date.toISOString().substring(0, 10);
+    }
+
+    this.editedTask = task;
   }
 
   saveEdit(index: number) {
-    this.update.emit({ index, task: this.editedTask });
-    this.editingIndex = null;
+    const taskId = this.filteredTasks[index].id;
+    this.taskService.updateTask(taskId, this.editedTask).subscribe(() => {
+      this.filteredTasks[index] = { ...this.editedTask };
+      this.editingIndex = null;
+    });
   }
 
   cancelEdit() {
@@ -32,6 +60,9 @@ export class TaskListComponent {
   }
 
   deleteTask(index: number) {
-    this.delete.emit(index);
+    const taskId = this.filteredTasks[index].id;
+    this.taskService.deleteTask(taskId).subscribe(() => {
+      this.filteredTasks.splice(index, 1);
+    });
   }
 }
