@@ -2,7 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import { TaskService } from '../../services/task.service'; 
 
 @Component({
   selector: 'app-task-form',
@@ -67,7 +67,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class TaskFormComponent {
   @Output() taskCreated = new EventEmitter<any>();
 
-constructor(private route: ActivatedRoute, private router: Router) {}
+constructor(private route: ActivatedRoute, private router: Router,  private taskService: TaskService) {}
   task = {
     title: '',
     description: '',
