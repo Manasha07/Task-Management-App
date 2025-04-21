@@ -5,6 +5,6 @@ export interface Task {
   status: string;
   priority: string;
   dueDate: string;
-  // associatedProject: string;
+  associatedProject: string;
   // project?: string; // ❌ Remove or make optional
 }
