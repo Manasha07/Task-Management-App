@@ -8,8 +8,16 @@
   width: 100%;
   max-width: 800px;
   padding: 2rem;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
+}
+
+/* ✅ New header style for spacing */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px; /* Adds space below the "Add Project" section */
 }
 
 mat-toolbar {
@@ -27,6 +35,7 @@ mat-toolbar {
   text-align: center;
   margin-top: 2rem;
   color: gray;
+
   mat-icon {
     font-size: 40px;
     margin-bottom: 0.5rem;
