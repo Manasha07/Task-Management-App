@@ -82,6 +82,11 @@ ngOnInit(): void {
     this.task.projectId = +projectId;
   }
 }
+onSubmit(): void {
+  this.taskService.createTask(this.task).subscribe(() => {
+    this.router.navigate(['/tasks'], { queryParams: { projectId: this.task.projectId } });
+  });
+}
 
   addTask() {
     if (this.task.title && this.task.description && this.task.status && this.task.priority && this.task.dueDate && this.task.project) {
