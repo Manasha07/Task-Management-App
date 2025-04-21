@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { ProjectListComponent } from './components/project-list/project-list.component';
 import { ProjectFormComponent } from './components/project-form/project-form.component'; // import it
+import { TaskFormComponent } from './components/task-form/task-form.component';
 
 export const routes: Routes = [
   { path: '', component: ProjectListComponent },
