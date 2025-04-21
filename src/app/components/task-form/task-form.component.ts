@@ -67,7 +67,7 @@ import { TaskService } from '../../services/task.service';
 export class TaskFormComponent {
   @Output() taskCreated = new EventEmitter<any>();
 
-constructor(private route: ActivatedRoute, private router: Router,  private taskService: TaskService) {}
+
   task = {
     title: '',
     description: '',
@@ -77,12 +77,7 @@ constructor(private route: ActivatedRoute, private router: Router,  private task
     project: '',
      projectId: null
   };
-ngOnInit(): void {
-  const projectId = this.route.snapshot.queryParamMap.get('projectId');
-  if (projectId) {
-    this.task.projectId = +projectId;
-  }
-}
+
 onSubmit(): void {
   this.taskService.createTask(this.task).subscribe(() => {
     this.router.navigate(['/tasks'], { queryParams: { projectId: this.task.projectId } });
