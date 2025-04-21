@@ -74,15 +74,11 @@ export class TaskFormComponent {
     status: '',
     priority: '',
     dueDate: '',
-    project: '',
-     projectId: null
+    project: ''
+    
   };
 
-onSubmit(): void {
-  this.taskService.createTask(this.task).subscribe(() => {
-    this.router.navigate(['/tasks'], { queryParams: { projectId: this.task.projectId } });
-  });
-}
+
 
   addTask() {
     if (this.task.title && this.task.description && this.task.status && this.task.priority && this.task.dueDate && this.task.project) {
@@ -93,8 +89,8 @@ onSubmit(): void {
         status: '',
         priority: '',
         dueDate: '',
-        project: '',
-          projectId: null 
+        project: ''
+          
       };
     }
   }
