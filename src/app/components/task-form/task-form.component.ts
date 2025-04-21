@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-task-form',
@@ -65,6 +67,7 @@ import { FormsModule } from '@angular/forms';
 export class TaskFormComponent {
   @Output() taskCreated = new EventEmitter<any>();
 
+constructor(private route: ActivatedRoute, private router: Router) {}
   task = {
     title: '',
     description: '',
@@ -73,6 +76,12 @@ export class TaskFormComponent {
     dueDate: '',
     project: ''
   };
+ngOnInit(): void {
+  const projectId = this.route.snapshot.queryParamMap.get('projectId');
+  if (projectId) {
+    this.task.projectId = +projectId;
+  }
+}
 
   addTask() {
     if (this.task.title && this.task.description && this.task.status && this.task.priority && this.task.dueDate && this.task.project) {
@@ -83,7 +92,8 @@ export class TaskFormComponent {
         status: '',
         priority: '',
         dueDate: '',
-        project: ''
+        project: '',
+          projectId: null 
       };
     }
   }
