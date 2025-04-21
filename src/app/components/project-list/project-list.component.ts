@@ -50,12 +50,13 @@ export class ProjectListComponent {
       this.fetchProjects();
     });
   }
+openTaskForm(projectId: number): void {
+  this.router.navigate(['/tasks/new'], { queryParams: { projectId } });
+}
 
   viewTasks(projectId: number): void {
     this.router.navigate(['/tasks'], { queryParams: { projectId } });
   }
 
-  openTaskForm(projectName: string): void {
-    this.router.navigate(['/tasks/add'], { queryParams: { projectName } });
-  }
+ 
 }
