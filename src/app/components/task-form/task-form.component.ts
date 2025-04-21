@@ -74,7 +74,8 @@ constructor(private route: ActivatedRoute, private router: Router,  private task
     status: '',
     priority: '',
     dueDate: '',
-    project: ''
+    project: '',
+     projectId: null
   };
 ngOnInit(): void {
   const projectId = this.route.snapshot.queryParamMap.get('projectId');
