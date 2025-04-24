@@ -1,22 +1,30 @@
 <div class="task-form-container">
   <h4 class="text-center">New Task</h4>
+
   <form (ngSubmit)="onSubmit()" class="form-row justify-content-center">
+    
     <input type="text" [(ngModel)]="task.title" name="title" placeholder="Title" class="form-control input-sm" required>
+
     <input type="text" [(ngModel)]="task.description" name="description" placeholder="Description" class="form-control input-sm" required>
+
     <select [(ngModel)]="task.status" name="status" class="form-control input-sm" required>
-      <option value="" disabled selected>Status</option>
-      <option value="Pending">Pending</option>
+      <option [ngValue]="''" disabled>Status</option>
+      <option value="To Do">To Do</option>
       <option value="In Progress">In Progress</option>
-      <option value="Done">Done</option>
+      <option value="Completed">Completed</option>
     </select>
+
     <select [(ngModel)]="task.priority" name="priority" class="form-control input-sm" required>
-      <option value="" disabled selected>Priority</option>
+      <option [ngValue]="''" disabled>Priority</option>
       <option value="Low">Low</option>
       <option value="Medium">Medium</option>
       <option value="High">High</option>
     </select>
-    <input type="date" [(ngModel)]="task.dueDate" name="dueDate" class="form-control input-sm" required>
-    <input type="text" [(ngModel)]="task.associatedProject" name="associatedProject" placeholder="Project" class="form-control input-sm" required>
+
+    <input type="date" [(ngModel)]="task.due_date" name="due_date" class="form-control input-sm" required>
+
+    <input type="number" [(ngModel)]="task.project_id" name="project_id" placeholder="Project ID" class="form-control input-sm" required>
+
     <button type="submit" class="btn btn-success">Create Task</button>
   </form>
 </div>
