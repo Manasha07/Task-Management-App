@@ -15,7 +15,7 @@ export class TaskListComponent implements OnInit {
   tasks: any[] = [];
   filteredTasks: any[] = [];
   editingIndex: number | null = null;
-  editedTask = { title: '', description: '', status: '', priority: '', dueDate: '', associatedProject: '' };
+  editedTask = { title: '', description: '', status: '', priority: '', due_date: '',project_id:0};
 
   constructor(private route: ActivatedRoute, private taskService: TaskService) {}
 
@@ -39,9 +39,9 @@ export class TaskListComponent implements OnInit {
     const task = { ...this.filteredTasks[index] };
 
     // Format dueDate to YYYY-MM-DD for input[type="date"]
-    if (task.dueDate) {
-      const date = new Date(task.dueDate);
-      task.dueDate = date.toISOString().substring(0, 10);
+    if (task.due_date) {
+      const date = new Date(task.due_date);
+      task.due_date = date.toISOString().substring(0, 10);
     }
 
     this.editedTask = task;
