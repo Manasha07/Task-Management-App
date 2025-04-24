@@ -7,7 +7,7 @@
         <th>Status</th>
         <th>Priority</th>
         <th>Due Date</th>
-        <th>Project</th>
+        <th>ProjectID</th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -30,8 +30,8 @@
               <option value="High">High</option>
             </select>
           </td>
-          <td><input type="date" [(ngModel)]="editedTask.dueDate" /></td>
-          <td><input [(ngModel)]="editedTask.associatedProject" /></td>
+          <td><input type="date" [(ngModel)]="editedTask.due_date" /></td>
+          <td><input [(ngModel)]="editedTask.project_id" /></td>
           <td>
             <button (click)="saveEdit(i)">Save</button>
             <button (click)="cancelEdit()">Cancel</button>
@@ -42,8 +42,8 @@
           <td>{{ task.description }}</td>
           <td>{{ task.status }}</td>
           <td>{{ task.priority }}</td>
-          <td>{{ task.dueDate }}</td>
-          <td>{{ task.associatedProject }}</td>
+          <td>{{ task.due_date }}</td>
+          <td>{{ task.project_id}}</td>
           <td>
             <button (click)="startEdit(i)">Edit</button>
             <button (click)="deleteTask(i)">Delete</button>
