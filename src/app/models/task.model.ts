@@ -4,7 +4,6 @@ export interface Task {
   description: string;
   status: string;
   priority: string;
-  dueDate: string;
-  associatedProject: string;
-  // project?: string; // ❌ Remove or make optional
+  due_date: string;
+  project_id: number;
 }
