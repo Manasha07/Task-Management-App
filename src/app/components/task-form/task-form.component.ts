@@ -17,7 +17,7 @@ import { TaskService } from '../../services/task.service';
         
         <select [(ngModel)]="task.status" name="status" class="form-control input-sm" required>
           <option value="" disabled selected>Status</option>
-          <option value="Pending">Pending</option>
+          <option value="To Do">To Do</option>
           <option value="In Progress">In Progress</option>
           <option value="Done">Done</option>
         </select>
@@ -29,8 +29,8 @@ import { TaskService } from '../../services/task.service';
           <option value="High">High</option>
         </select>
 
-        <input type="date" [(ngModel)]="task.dueDate" name="dueDate" class="form-control input-sm" required>
-        <input type="text" [(ngModel)]="task.project" name="project" placeholder="Project" class="form-control input-sm" required>
+        <input type="date" [(ngModel)]="task.due_date" name="due_date" class="form-control input-sm" required>
+        <input type="text" [(ngModel)]="task.project_id" name="project_id" placeholder="Project" class="form-control input-sm" required>
 
         <button type="submit" class="btn btn-success">Add</button>
       </form>
@@ -73,23 +73,23 @@ export class TaskFormComponent {
     description: '',
     status: '',
     priority: '',
-    dueDate: '',
-    project: ''
+    due_date: '',
+    project_id: 0
     
   };
 
 
 
   addTask() {
-    if (this.task.title && this.task.description && this.task.status && this.task.priority && this.task.dueDate && this.task.project) {
+    if (this.task.title && this.task.description && this.task.status && this.task.priority && this.task.due_date && this.task.project_id) {
       this.taskCreated.emit(this.task);
       this.task = {
         title: '',
         description: '',
         status: '',
         priority: '',
-        dueDate: '',
-        project: ''
+        due_date: '',
+        project_id: 0
           
       };
     }
