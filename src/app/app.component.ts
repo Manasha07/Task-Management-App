@@ -11,4 +11,5 @@ import { TaskListComponent } from './components/task-list/task-list.component';
   templateUrl: './app.component.html',
 })
 export class AppComponent {
+  title= 'task_management_app'
 }
