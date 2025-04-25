@@ -11,10 +11,10 @@ import { TaskService } from '../../services/task.service';
   template: `
     <div class="task-form-container">
       <h4 class="text-center mb-3">New Task</h4>
-      <form (ngSubmit)="addTask()" #taskForm="ngForm" class="d-flex flex-wrap justify-content-center gap-2">
+      <form (ngSubmit)="addTask()" #taskForm="ngForm" class="form-layout">
         <input type="text" [(ngModel)]="task.title" name="title" placeholder="Title" class="form-control input-sm" required>
         <input type="text" [(ngModel)]="task.description" name="description" placeholder="Description" class="form-control input-sm" required>
-        
+
         <select [(ngModel)]="task.status" name="status" class="form-control input-sm" required>
           <option value="" disabled selected>Status</option>
           <option value="To Do">To Do</option>
@@ -36,33 +36,49 @@ import { TaskService } from '../../services/task.service';
       </form>
     </div>
   `,
-  styles: [`
-    .task-form-container {
-      text-align: center;
-      padding: 20px;
-      margin: 0 auto;
-      max-width: 900px;
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
+ styles: [`
+  .task-form-container {
+    margin: 60px auto;
+    max-width: 500px;
+    background: #f9f9f9;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+  }
 
-    input, select {
-      margin: 5px;
-      padding: 8px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      min-width: 150px;
-    }
+  h4 {
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
 
-    .form-control.input-sm {
-      font-size: 14px;
-    }
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
 
-    .btn-success {
-      padding: 8px 16px;
-    }
-  `]
+  input, select {
+    padding: 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+
+  button.btn-success {
+    padding: 12px;
+    font-size: 14px;
+    border-radius: 8px;
+    font-weight: 500;
+    background-color:rgb(40, 53, 167);
+    border: none;
+    color: white;
+    transition: background-color 0.3s ease;
+  }
+
+  button.btn-success:hover {
+    background-color:rgb(45, 33, 136);
+  }
+`]
 })
 export class TaskFormComponent {
   @Output() taskCreated = new EventEmitter<any>();

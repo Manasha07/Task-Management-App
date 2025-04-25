@@ -33,20 +33,21 @@
           <td><input type="date" [(ngModel)]="editedTask.due_date" /></td>
           <td><input [(ngModel)]="editedTask.project_id" /></td>
           <td>
-            <button (click)="saveEdit(i)">Save</button>
-            <button (click)="cancelEdit()">Cancel</button>
+            <button class="edit-btn" (click)="saveEdit(i)">Save</button>
+            <button class="delete-btn" (click)="cancelEdit()">Cancel</button>
           </td>
         </ng-container>
+
         <ng-template #viewMode>
           <td>{{ task.title }}</td>
           <td>{{ task.description }}</td>
-          <td>{{ task.status }}</td>
-          <td>{{ task.priority }}</td>
+          <td class="status" [attr.data-status]="task.status"></td>
+          <td class="priority" [attr.data-priority]="task.priority"></td>
           <td>{{ task.due_date }}</td>
-          <td>{{ task.project_id}}</td>
+          <td>{{ task.project_id }}</td>
           <td>
-            <button (click)="startEdit(i)">Edit</button>
-            <button (click)="deleteTask(i)">Delete</button>
+            <button class="edit-btn" (click)="startEdit(i)">Edit</button>
+            <button class="delete-btn" (click)="deleteTask(i)">Delete</button>
           </td>
         </ng-template>
       </tr>

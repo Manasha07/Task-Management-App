@@ -1,62 +1,106 @@
 .task-table-container {
-    max-width: 1000px;
-    margin: 40px auto;
-    overflow-x: auto;
-  }
-  
-  .task-table {
-    width: 100%;
-    border-collapse: collapse;
-    text-align: center;
-    font-family: 'Segoe UI', sans-serif;
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
-  }
-  
-  .task-table th,
-  .task-table td {
-    border: 1px solid #ccc;
-    padding: 12px 8px;
-  }
-  
-  .task-table th {
-    background-color: #f2f2f2;
-    font-weight: 600;
-  }
-  
-  .task-table td input,
-  .task-table td select {
-    width: 100%;
-    padding: 4px;
-    box-sizing: border-box;
-  }
-  
-  .task-table button {
-    margin: 2px;
-    padding: 6px 12px;
-    border: none;
-    border-radius: 4px;
-    color: rgb(210, 11, 11);
-    cursor: pointer;
-  }
-  
-  .task-table button:hover {
-    opacity: 0.9;
-  }
-  
-  .task-table button.edit-btn {
-    background-color: #3498db; /* blue */
-  }
-  
-  .task-table button.delete-btn {
-    background-color: #e74c3c; /* red */
-  }
-  
-  .task-table button.save-btn {
-    background-color: #2ecc71; /* green */
-  }
-  
-  .task-table button.cancel-btn {
-    background-color: #95a5a6; /* grey */
-  }
-  
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 1rem;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
+}
+
+/* Table Base */
+.task-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 15px;
+  color: #333;
+}
+
+/* Header */
+.task-table th {
+  background-color: #f5f7fa;
+  font-weight: 600;
+  padding: 16px 10px;
+  text-align: left;
+  color: #444;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+/* Row Cells */
+.task-table td {
+  padding: 14px 10px;
+  border-bottom: 1px solid #f0f0f0;
+  vertical-align: middle;
+}
+
+/* Hover effect */
+.task-table tr:hover {
+  background-color: #f9f9f9;
+}
+
+/* Tags for Status */
+.task-table td.status::before {
+  content: attr(data-status);
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  background-color: #e3f2fd;
+  color: #1e88e5;
+}
+
+.task-table td.priority::before {
+  content: attr(data-priority);
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.task-table td.priority[data-priority="High"]::before {
+  background-color: #fdecea;
+  color: #e53935;
+}
+.task-table td.priority[data-priority="Medium"]::before {
+  background-color: #fff3e0;
+  color: #fb8c00;
+}
+.task-table td.priority[data-priority="Low"]::before {
+  background-color: #e8f5e9;
+  color: #43a047;
+}
+
+/* Buttons */
+.task-table button {
+  margin: 2px;
+  padding: 6px 14px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.task-table button.edit-btn {
+  background-color: #1e88e5;
+}
+
+.task-table button.delete-btn {
+  background-color: #e53935;
+}
+
+.task-table button.save-btn {
+  background-color: #43a047; /* green */
+}
+
+.task-table button.cancel-btn {
+  background-color: #757575; /* grey */
+}
+
+.task-table button:hover {
+  opacity: 0.9;
+}
