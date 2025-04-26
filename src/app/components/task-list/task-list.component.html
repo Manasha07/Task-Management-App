@@ -16,8 +16,9 @@
         <th>Actions</th>
       </tr>
     </thead>
-    <tbody>
-      <tr *ngFor="let task of tasks; let i = index">
+    <tbody> 
+      <tr *ngFor="let task of filteredTasks; let i = index">
+
         <ng-container *ngIf="editingIndex === i; else viewMode">
           <td><input [(ngModel)]="editedTask.title" /></td>
           <td><input [(ngModel)]="editedTask.description" /></td>
