@@ -3,11 +3,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { TaskService } from '../../services/task.service';
-
+import { TaskFiltersComponent } from '../task-filters/task-filters.component';
 @Component({
   selector: 'app-task-list',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule,TaskFiltersComponent],
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.css']
 })
@@ -33,7 +33,15 @@ export class TaskListComponent implements OnInit {
       });
     });
   }
-
+ onFiltersChanged(filters: any) {
+    this.filteredTasks = this.tasks.filter(task => {
+      const matchesStatus = !filters.status || task.status === filters.status;
+      const matchesPriority = !filters.priority || task.priority === filters.priority;
+      const matchesDueDate = !filters.due_date || new Date(task.due_date).toISOString().substring(0,10) === filters.due_date;
+      return matchesStatus && matchesPriority && matchesDueDate;
+    });
+  }
+  
   startEdit(index: number) {
     this.editingIndex = index;
     const task = { ...this.filteredTasks[index] };
