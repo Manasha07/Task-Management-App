@@ -1,34 +1,33 @@
-<div class="p-4 bg-white rounded-lg shadow-md grid gap-4 md:grid-cols-3">
-    <mat-form-field appearance="outline" class="w-full">
-      <mat-label>Status</mat-label>
-      <mat-select formControlName="status">
-        <mat-option value="">All</mat-option>
-        <mat-option value="pending">Pending</mat-option>
-        <mat-option value="in_progress">In Progress</mat-option>
-        <mat-option value="completed">Completed</mat-option>
-      </mat-select>
-    </mat-form-field>
-  
-    <mat-form-field appearance="outline" class="w-full">
-      <mat-label>Priority</mat-label>
-      <mat-select formControlName="priority">
-        <mat-option value="">All</mat-option>
-        <mat-option value="low">Low</mat-option>
-        <mat-option value="medium">Medium</mat-option>
-        <mat-option value="high">High</mat-option>
-      </mat-select>
-    </mat-form-field>
-  
-    <mat-form-field appearance="outline" class="w-full">
-      <mat-label>Due Date</mat-label>
-      <input matInput [matDatepicker]="picker" formControlName="dueDate">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-  
-    <div class="md:col-span-3 flex gap-4 justify-end">
-      <button mat-stroked-button color="primary" (click)="applyFilters()">Apply</button>
-      <button mat-button color="warn" (click)="resetFilters()">Reset</button>
-    </div>
+<form [formGroup]="filterForm" class="flex flex-wrap gap-4 p-4">
+  <mat-form-field appearance="fill" class="w-48">
+    <mat-label>Status</mat-label>
+    <mat-select formControlName="status">
+      <mat-option value="">All</mat-option>
+      <mat-option value="To Do">To Do</mat-option>
+      <mat-option value="In Progress">In Progress</mat-option>
+      <mat-option value="Completed">Completed</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="w-48">
+    <mat-label>Priority</mat-label>
+    <mat-select formControlName="priority">
+      <mat-option value="">All</mat-option>
+      <mat-option value="Low">Low</mat-option>
+      <mat-option value="Medium">Medium</mat-option>
+      <mat-option value="High">High</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="w-64">
+    <mat-label>Due Date</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="dueDate">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <div class="flex items-center gap-2">
+    <button mat-raised-button color="primary" type="button" (click)="applyFilters()">Apply</button>
+    <button mat-button type="button" (click)="resetFilters()">Reset</button>
   </div>
-  
+</form>
