@@ -20,17 +20,22 @@ export class TaskListComponent implements OnInit {
   constructor(private route: ActivatedRoute, private taskService: TaskService) {}
 
   ngOnInit(): void {
-    this.taskService.getTasks().subscribe((data: any[]) => {
-      this.tasks = data;
-
-      this.route.queryParams.subscribe(params => {
-        const projectId = +params['projectId'];
-        if (projectId) {
-          this.filteredTasks = this.tasks.filter(task => task.projectId === projectId);
-        } else {
+    this.route.queryParams.subscribe(params => {
+      const projectId = +params['projectId'];
+  
+      if (projectId) {
+        // Call getTasksByProjectId if projectId exists
+        this.taskService.getTasksByProject(projectId).subscribe((data: any[]) => {
+          this.tasks = data;
           this.filteredTasks = this.tasks;
-        }
-      });
+        });
+      } else {
+        // Otherwise fetch all tasks
+        this.taskService.getTasks().subscribe((data: any[]) => {
+          this.tasks = data;
+          this.filteredTasks = this.tasks;
+        });
+      }
     });
   }
  onFiltersChanged(filters: any) {

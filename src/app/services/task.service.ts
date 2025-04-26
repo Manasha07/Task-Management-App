@@ -15,6 +15,10 @@ export class TaskService {
   return this.http.get<Task[]>(`http://localhost:3000/task?projectId=${projectId}`);
 }
 
+getTasksByProject(projectId: number) {
+  return this.http.get<Task[]>(`http://localhost:3000/task/by-project/filter?projectId=${projectId}`);
+}
+
   getTasks(): Observable<Task[]> {
     return this.http.get<Task[]>(this.baseUrl);
   }

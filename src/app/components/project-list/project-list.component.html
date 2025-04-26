@@ -44,7 +44,9 @@
 
 
 
-              <button mat-button (click)="viewTasks(project.id)">View Tasks</button>
+              <a mat-button [routerLink]="['/tasks']" [queryParams]="{ projectId: project.id }">
+                View Tasks
+              </a>
             </div>
           </td>
         </ng-container>
