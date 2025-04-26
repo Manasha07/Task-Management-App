@@ -8,6 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-task-filters',
@@ -21,10 +22,11 @@ import { MatSelectModule } from '@angular/material/select';
     MatDatepickerModule,
     MatNativeDateModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    FormsModule
   ],
   templateUrl: './task-filters.component.html',
-  styleUrls: ['./task-filters.component.css']
+  styleUrls: []
 })
 export class TaskFiltersComponent {
   @Output() filtersChanged = new EventEmitter<any>();
@@ -36,6 +38,10 @@ export class TaskFiltersComponent {
       priority: [''],
       dueDate: ['']
     });
+  }
+
+  emitFilters() {
+    this.filtersChanged.emit(this.filterForm.value);
   }
 
   applyFilters(): void {
