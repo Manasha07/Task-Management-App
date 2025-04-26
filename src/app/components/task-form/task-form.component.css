@@ -1,1 +1,72 @@
+/* task-form.component.css */
 
+.task-form-container {
+    margin: 60px auto;            /* push it down from the top */
+    max-width: 400px;             /* narrow column */
+    background: #ffffff;          
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 32px;                /* inner breathing room */
+  }
+  
+  .task-form-container h4 {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 24px;
+  }
+  
+  .form-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;                    /* vertical spacing between fields */
+  }
+  
+  .form-control.input-sm {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+  }
+  
+  .form-control.input-sm:focus {
+    outline: none;
+    border-color: #5c6bc0;
+    box-shadow: 0 0 0 2px rgba(92, 107, 192, 0.2);
+  }
+  
+  .btn-success {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    background-color: #3949ab;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-top: 8px;
+  }
+  
+  .btn-success:hover {
+    background-color: #303f9f;
+  }
+  
+  /* make selects match inputs */
+  select.form-control.input-sm {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D'8'%20height%3D'5'%20viewBox%3D'0%200%208%205'%20xmlns%3D'http%3A//www.w3.org/2000/svg'%3E%3Cpath%20d%3D'M0%200l4%205%204-5z'%20fill%3D'%23666'%20/%3E%3C/svg%3E") no-repeat calc(100% - 12px) center / 8px 5px;
+    padding-right: 36px;
+  }
+  
+  .form-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* <-- increased from 16px to 20px */
+  }
