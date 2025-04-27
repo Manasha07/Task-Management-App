@@ -47,7 +47,7 @@ export class ProjectFormComponent implements OnInit {
     this.form = this.fb.group({
       name: ['', [Validators.required, Validators.maxLength(50)]],
       description: ['', [Validators.maxLength(200)]],
-      dueDate: ['', Validators.required]
+     
     });
 
     const id = this.route.snapshot.paramMap.get('id');
@@ -63,7 +63,6 @@ export class ProjectFormComponent implements OnInit {
       this.form.patchValue({
         name: project.name,
         description: project.description,
-        // dueDate: project.dueDate ? new Date(project.dueDate) : ''
       });
     });
   }
