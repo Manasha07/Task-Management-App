@@ -24,18 +24,7 @@
           </mat-error>
         </mat-form-field>
   
-        <!-- Due Date -->
-        <mat-form-field appearance="fill" class="w-100">
-          <mat-label>Due Date</mat-label>
-          <input
-            matInput
-            [min]="today"
-            [matDatepicker]="picker"
-            formControlName="dueDate"
-          />
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
+       
   
         <!-- Submit Button -->
         <button mat-raised-button color="primary" class="w-100 mt-3" type="submit">
