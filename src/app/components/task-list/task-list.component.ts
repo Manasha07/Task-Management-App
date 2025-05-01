@@ -38,11 +38,30 @@ export class TaskListComponent implements OnInit {
       }
     });
   }
- onFiltersChanged(filters: any) {
+  onFiltersChanged(filters: {
+    status?: string;
+    priority?: string;
+    dueDate?: string | Date;
+  }) {
     this.filteredTasks = this.tasks.filter(task => {
-      const matchesStatus = !filters.status || task.status === filters.status;
+      // 1) status & priority
+      const matchesStatus   = !filters.status   || task.status   === filters.status;
       const matchesPriority = !filters.priority || task.priority === filters.priority;
-      const matchesDueDate = !filters.due_date || new Date(task.due_date).toISOString().substring(0,10) === filters.due_date;
+  
+      // 2) extract Y-M-D from task.due_date
+      const taskDateStr = task.due_date.toString().slice(0, 10);
+  
+      // 3) normalize filters.dueDate to a string
+      let filterDateStr: string | undefined;
+      if (filters.dueDate) {
+        filterDateStr = filters.dueDate instanceof Date
+          ? filters.dueDate.toISOString().slice(0, 10)
+          : filters.dueDate;
+      }
+  
+      // 4) compare
+      const matchesDueDate = !filterDateStr || taskDateStr === filterDateStr;
+  
       return matchesStatus && matchesPriority && matchesDueDate;
     });
   }
